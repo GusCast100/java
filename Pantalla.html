@@ -1,0 +1,624 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Untitled Document</title>
+<style type="text/css">
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+}
+body {
+	background-color: #99CCFF;
+}
+</style></head>
+<MARQUEE BEHAVIOR=ALTERNATE>HOLA ESTE ES EL MENU</MARQUEE>
+<style type="text/css">
+#outerCircleText {
+font-style: italic;
+font-weight: bold;
+font-family: 'comic sans ms', verdana, arial;
+color: #000;
+position: absolute;top: 0;left: 0;z-index: 3000;cursor: default;}
+#outerCircleText div {position: relative;}
+#outerCircleText div div {position: absolute;top: 0;left: 0;text-align: center;}
+</style>
+<script type="text/javascript">
+;(function(){
+var msg = "Castelan Ruiz Gustavo";
+var size = 24;
+var circleY = 0.75; var circleX = 2;
+var letter_spacing = 5;
+var diameter = 10;
+var rotation = 0.4;
+var speed = 0.3;
+if (!window.addEventListener && !window.attachEvent || !document.createElement) return;
+msg = msg.split('');
+var n = msg.length - 1, a = Math.round(size * diameter * 0.208333), currStep = 20,
+ymouse = a * circleY + 20, xmouse = a * circleX + 20, y = [], x = [], Y = [], X = [],
+o = document.createElement('div'), oi = document.createElement('div'),
+b = document.compatMode && document.compatMode != "BackCompat"? document.documentElement : document.body,
+mouse = function(e){
+ e = e || window.event;
+ ymouse = !isNaN(e.pageY)? e.pageY : e.clientY;
+ xmouse = !isNaN(e.pageX)? e.pageX : e.clientX;
+},
+makecircle = function(){
+ if(init.nopy){
+  o.style.top = (b || document.body).scrollTop + 'px';
+  o.style.left = (b || document.body).scrollLeft + 'px';
+ };
+ currStep -= rotation;
+ for (var d, i = n; i > -1; --i){ 
+  d = document.getElementById('iemsg' + i).style;
+  d.top = Math.round(y[i] + a * Math.sin((currStep + i) / letter_spacing) * circleY - 15) + 'px';
+  d.left = Math.round(x[i] + a * Math.cos((currStep + i) / letter_spacing) * circleX) + 'px';
+ };
+},
+drag = function(){ 
+ y[0] = Y[0] += (ymouse - Y[0]) * speed;
+ x[0] = X[0] += (xmouse - 20 - X[0]) * speed;
+ for (var i = n; i > 0; --i){
+  y[i] = Y[i] += (y[i-1] - Y[i]) * speed;
+  x[i] = X[i] += (x[i-1] - X[i]) * speed;
+ };
+ makecircle();
+},
+init = function(){ 
+ if(!isNaN(window.pageYOffset)){
+  ymouse += window.pageYOffset;
+  xmouse += window.pageXOffset;
+ } else init.nopy = true;
+ for (var d, i = n; i > -1; --i){
+  d = document.createElement('div'); d.id = 'iemsg' + i;
+  d.style.height = d.style.width = a + 'px';
+ d.appendChild(document.createTextNode(msg[i]));
+  oi.appendChild(d); y[i] = x[i] = Y[i] = X[i] = 0;
+ };
+ o.appendChild(oi); document.body.appendChild(o);
+ setInterval(drag, 25);
+},
+ascroll = function(){
+ ymouse += window.pageYOffset;
+ xmouse += window.pageXOffset;
+ window.removeEventListener('scroll', ascroll, false);
+};
+o.id = 'outerCircleText'; o.style.fontSize = size + 'px';
+if (window.addEventListener){
+ window.addEventListener('load', init, false);
+ document.addEventListener('mouseover', mouse, false);
+ document.addEventListener('mousemove', mouse, false);
+  if (/Apple/.test(navigator.vendor))
+   window.addEventListener('scroll', ascroll, false);
+}
+else if (window.attachEvent){
+ window.attachEvent('onload', init);
+ document.attachEvent('onmousemove', mouse);
+};
+})();
+</script>
+<body>
+<script>
+var mydate=new Date()
+var year=mydate.getYear()
+if (year < 1000)
+year+=1900
+var day=mydate.getDay()
+var month=mydate.getMonth()
+var daym=mydate.getDate()
+if (daym<10)
+daym="0"+daym
+var dayarray=new Array("domingo","lunes","martes","miercoles","jueves","viernes","sabado")
+var montharray=new Array("enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre")
+document.write("<small><font color='000000' face='Arial'><b>"+dayarray[day]+", "+montharray[month]+" "+daym+", "+year+"</b></font></small>")
+</script>
+<SCRIPT LANGUAGE="JavaScript">
+function setToday() {
+var now   = new Date();
+var day   = now.getDate();
+var month = now.getMonth();
+var year  = now.getYear();
+if (year < 2000)    
+year = year + 1900; 
+this.focusDay = day;
+document.calControl.month.selectedIndex = month;
+document.calControl.year.value = year;
+displayCalendar(month, year);
+}
+function isFourDigitYear(year) {
+if (year.length != 4) {
+alert ("Sorry, the year must be four-digits in length.");
+document.calControl.year.select();
+document.calControl.year.focus();
+} else { return true; }
+}
+function selectDate() {
+var year  = document.calControl.year.value;
+if (isFourDigitYear(year)) {
+var day   = 0;
+var month = document.calControl.month.selectedIndex;
+displayCalendar(month, year);
+    }
+}
+
+function setPreviousYear() {
+var year  = document.calControl.year.value;
+if (isFourDigitYear(year)) {
+var day   = 0;
+var month = document.calControl.month.selectedIndex;
+year--;
+document.calControl.year.value = year;
+displayCalendar(month, year);
+   }
+}
+function setPreviousMonth() {
+var year  = document.calControl.year.value;
+if (isFourDigitYear(year)) {
+var day   = 0;
+var month = document.calControl.month.selectedIndex;
+if (month == 0) {
+month = 11;
+if (year > 1000) {
+year--;
+document.calControl.year.value = year;
+}
+} else { month--; }
+document.calControl.month.selectedIndex = month;
+displayCalendar(month, year);
+   }
+}
+function setNextMonth() {
+var year  = document.calControl.year.value;
+if (isFourDigitYear(year)) {
+var day   = 0;
+var month = document.calControl.month.selectedIndex;
+if (month == 11) {
+month = 0;
+year++;
+document.calControl.year.value = year;
+} else { month++; }
+document.calControl.month.selectedIndex = month;
+displayCalendar(month, year);
+   }
+}
+function setNextYear() {
+var year = document.calControl.year.value;
+if (isFourDigitYear(year)) {
+var day = 0;
+var month = document.calControl.month.selectedIndex;
+year++;
+document.calControl.year.value = year;
+displayCalendar(month, year);
+   }
+}
+function displayCalendar(month, year) {       
+month = parseInt(month);
+year = parseInt(year);
+var i = 0;
+var days = getDaysInMonth(month+1,year);
+var firstOfMonth = new Date (year, month, 1);
+var startingPos = firstOfMonth.getDay();
+days += startingPos;
+document.calButtons.calPage.value  =   " Su Mo Tu We Th Fr Sa";
+document.calButtons.calPage.value += "\n --------------------";
+for (i = 0; i < startingPos; i++) {
+if ( i%7 == 0 ) document.calButtons.calPage.value += "\n ";
+document.calButtons.calPage.value += "   ";
+}
+for (i = startingPos; i < days; i++) {
+if ( i%7 == 0 ) document.calButtons.calPage.value += "\n ";
+if (i-startingPos+1 < 10)
+document.calButtons.calPage.value += "0";
+document.calButtons.calPage.value += i-startingPos+1;
+document.calButtons.calPage.value += " ";
+}
+for (i=days; i<42; i++)  {
+if ( i%7 == 0 ) document.calButtons.calPage.value += "\n ";
+document.calButtons.calPage.value += "   ";
+}
+document.calControl.Go.focus();
+}
+function getDaysInMonth(month,year)  {
+var days;
+if (month==1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12)  days=31;
+else if (month==4 || month==6 || month==9 || month==11) days=30;
+else if (month==2)  {
+if (isLeapYear(year)) { days=29; }
+else { days=28; }
+}
+return (days);
+}
+function isLeapYear (Year) {
+if (((Year % 4)==0) && ((Year % 100)!=0) || ((Year % 400)==0)) {
+return (true);
+} else { return (false); }
+}
+</SCRIPT>
+<FORM NAME="calControl" onSubmit="return false;" method="post">
+<TABLE CELLPADDING=0 CELLSPACING=0 BORDER=0>
+<TR><TD COLSPAN=7>
+<SELECT NAME="month" onChange="selectDate()">
+<OPTION>enero</OPTION>
+<OPTION>febrero</OPTION>
+<OPTION>marzo</OPTION>
+<OPTION>abril</OPTION>
+<OPTION>mayo</OPTION>
+<OPTION>junio</OPTION>
+<OPTION>julio</OPTION>
+
+<OPTION>agosto</OPTION>
+<OPTION>septiembre</OPTION>
+<OPTION>octubre</OPTION>
+<OPTION>noviembre</OPTION>
+<OPTION>diciembre</OPTION>
+</SELECT>
+<INPUT NAME="year" TYPE=TEXT SIZE=4 MAXLENGTH=4>
+<INPUT TYPE="button" NAME="Go" value="buscar" onClick="selectDate()">
+</TD>
+</TR>
+</FORM>
+<FORM NAME="calButtons" method="post">
+<TR><TD><textarea FONT="Courier" NAME="calPage" WRAP=no ROWS=8 COLS=22></textarea></TD><TR><TD>
+<INPUT TYPE=BUTTON NAME="previousYear" VALUE=" <<  "  onClick="setPreviousYear()">
+<INPUT TYPE=BUTTON NAME="previousYear" VALUE="  <  "  onClick="setPreviousMonth()">
+<INPUT TYPE=BUTTON NAME="previousYear" VALUE="hoy"  onClick="setToday()">
+<INPUT TYPE=BUTTON NAME="previousYear" VALUE="  >  "  onClick="setNextMonth()">
+<INPUT TYPE=BUTTON NAME="previousYear" VALUE="  >> "  onClick="setNextYear()">
+</TD></TR>
+</TABLE></FORM></FONT>
+
+
+
+
+
+<SCRIPT >
+
+var alpha=new Array();
+var alpha_index=0;
+
+var bravo=new Array();
+var bravo_index=0;
+
+var running=0;
+var failnum=0;
+var advising=0;
+
+function pick()
+{
+  var choice="";
+  var blank=0;
+ 
+  for (i=0; i<words[index].length; i++)
+  {
+    t=0;
+    for(j=0; j<=alpha_index; j++) 
+    if(words[index].charAt(i)==alpha[j] || words[index].charAt(i)==alpha[j].toLowerCase()) t=1;
+    
+    if (t) choice+=words[index].charAt(i)+" ";
+    else 
+    {
+      choice+="_ ";
+      blank=1;
+    }
+  }   
+    
+  document.f.word.value=choice;
+    
+  if (!blank)
+  {
+    document.f.tried.value="   === You Win! ===";
+    document.f.score.value++;
+    running=0;
+  }
+} 
+
+
+function new_word(form)
+{
+  if(!running)
+  {
+    running=1;
+    failnum=0;
+    form.lives.value=failnum;
+    form.tried.value="";
+    form.word.value="";
+    index=Math.round(Math.random()*10000) % 100;
+    alpha[0]=words[index].charAt(0);
+    alpha[1]=words[index].charAt(words[index].length-1);
+    alpha_index=1;
+    bravo[0]=words[index].charAt(0);
+    bravo[1]=words[index].charAt(words[index].length-1);
+    bravo_index=1;
+    pick();
+  }
+  else advise("A word is already in play!");
+}
+
+function seek(letter)
+{
+  if (!running) advise(".....Click GO to start !");
+  else
+  {
+    t=0;
+    for (i=0; i<=bravo_index; i++)
+    {
+      if (bravo[i]==letter || bravo[i]==letter.toLowerCase()) t=1;
+    }
+
+    if (!t) 
+	  {
+	    document.f.tried.value+=letter+" "
+	    bravo_index++;
+	    bravo[bravo_index]=letter;
+	    
+      for(i=0;i<words[index].length;i++)
+   	  if(words[index].charAt(i)==letter || words[index].charAt(i)==letter.toLowerCase()) t=1;
+  	  
+      if(t)
+      {
+  	    alpha_index++;
+	      alpha[alpha_index]=letter;
+	    }
+	    else failnum++;
+	
+      document.f.lives.value=failnum;
+	    if (failnum==6) 
+      {
+        document.f.tried.value="You lose - Try again!";
+        document.f.word.value=words[index];
+        document.f.score.value--;
+        running=0;
+      }
+			else pick();
+	  }
+	  else advise("Letter "+letter+" is already used!");
+  }
+}
+
+function advise(msg)
+{
+  if (!advising)
+  {
+    advising=-1;
+    savetext=document.f.tried.value;  
+    document.f.tried.value=msg;
+    window.setTimeout("document.f.tried.value=savetext; advising=0;",1000);
+  }
+}
+
+var words = new Array("","acrimonious","allegiance","ameliorate","annihilate","antiseptic","articulate","authoritative","benefactor","boisterous","breakthrough","carcinogenic","censorious","chivalrous","collarbone","commendable","compendium","comprehensive","conclusive","conscientious","considerate","deferential","denouement","determinate","diffidence","disruption","earthenware","elliptical","entanglement","escutcheon","extinguish","extradition","fastidious","flamboyant","forethought","forthright","gregarious","handmaiden","honeysuckle","hypocritical","illustrious","infallible","lumberjack","mischievous","mollycoddle","nimbleness","nonplussed","obliterate","obsequious","obstreperous","opalescent","ostensible","pandemonium","paraphernalia","pawnbroker","pedestrian","peremptory","perfunctory","pernicious","perpetrate","personable","pickpocket","poltergeist","precipitous","predicament","preposterous","presumptuous","prevaricate","propensity","provisional","pugnacious","ramshackle","rattlesnake","reciprocate","recrimination","redoubtable","relinquish","remonstrate","repository","reprehensible","resolution","resplendent","restitution","retaliation","retribution","saccharine","salubrious","skulduggery","skyscraper","soothsayer","tearjerker","transcribe","turpentine","unassuming","underscore","undertaker","underwrite","unobtrusive","vernacular","waterfront","watertight");
+
+</SCRIPT>
+
+
+<FORM NAME="f">
+
+<TABLE BGCOLOR=#C0C0C0 BORDER=1>
+ <TR>
+  <TD COLSPAN=4 ALIGN=RIGHT>
+    <INPUT TYPE=TEXT NAME="score" VALUE="0" onfocus="score.blur();" SIZE=2>
+   <BR>
+    <INPUT TYPE=TEXT NAME="lives" VALUE="0" onfocus="lives.blur();" SIZE=2>  
+  </TD>
+  <TD COLSPAN=7 ALIGN=CENTER>
+   <INPUT TYPE=TEXT NAME="word" VALUE="    --- Hangman ---" onfocus="word.blur();" SIZE=25> 
+    <BR>
+   <INPUT TYPE=TEXT NAME="tried" VALUE="Click GO to get a word." onfocus="tried.blur();" SIZE=25>  
+  </TD>
+  <TD COLSPAN=2 ALIGN=CENTER>
+   <INPUT TYPE=BUTTON onclick="new_word(this.form);" VALUE=" GO ">   
+  </TD>
+ </TR>
+ <TR>
+  <TD><INPUT TYPE=BUTTON VALUE=" A "   onclick="seek('A');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" B "   onclick="seek('B');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" C "   onclick="seek('C');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" D "   onclick="seek('D');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" E "   onclick="seek('E');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" F "   onclick="seek('F');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" G "   onclick="seek('G');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" H "   onclick="seek('H');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" I   " onclick="seek('I');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" J  "  onclick="seek('J');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" K "   onclick="seek('K');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" L  "  onclick="seek('L');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" M "   onclick="seek('M');"></TD>
+ </TR>
+ <TR>
+  <TD><INPUT TYPE=BUTTON VALUE=" N "   onclick="seek('N');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" O "   onclick="seek('O');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" P "   onclick="seek('P');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" Q "   onclick="seek('Q');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" R "   onclick="seek('R');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" S "   onclick="seek('S');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" T "   onclick="seek('T');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" U "   onclick="seek('U');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" V "   onclick="seek('V');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" W "   onclick="seek('W');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" X  "  onclick="seek('X');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" Y "   onclick="seek('Y');"></TD>
+  <TD><INPUT TYPE=BUTTON VALUE=" Z  "  onclick="seek('Z');"></TD>
+ </TR>
+</TABLE>
+
+</FORM>
+<script language="JavaScript">
+<!-- hiding for old browsers
+	// response time test, created by Jasper van Zandbeek
+	// e-mail: jasperz@net-v.com
+
+var startTime=new Date();
+var endTime=new Date();
+var startPressed=false;
+var bgChangeStarted=false;
+var maxWait=20;
+var timerID;
+
+function startTest()
+{
+	document.body.style.background=document.response.bgColorChange.options[document.response.bgColorChange.selectedIndex].text;
+	bgChangeStarted=true;
+	startTime=new Date();
+}
+
+function remark(responseTime)
+{
+	var responseString="";
+	if (responseTime < 0.10)
+		responseString="Well done!";
+	if (responseTime >= 0.10 && responseTime < 0.20)
+		responseString="Nice!";
+	if (responseTime >=0.20 && responseTime < 0.30)
+		responseString="Could be better...";
+	if (responseTime >=0.30 && responseTime < 0.60)
+		responseString="Keep practising!";
+	if (responseTime >=0.60 && responseTime < 1)
+		responseString="Have you been drinking?";
+	if (responseTime >=1)
+		responseString="Did you fall asleep?";
+
+	return responseString;
+}
+
+function stopTest()
+{
+	if(bgChangeStarted)
+	{
+		endTime=new Date();
+		var responseTime=(endTime.getTime()-startTime.getTime())/1000;
+
+		document.body.style.background="white";       
+		alert("Your response time is: " + responseTime + " seconds " + "\n" + remark(responseTime));
+		startPressed=false;
+		bgChangeStarted=false;
+	}
+	else
+	{
+		if (!startPressed)
+		{
+			alert("press start first to start test");
+		}
+		else
+		{       
+			clearTimeout(timerID);
+			startPressed=false;             
+			alert("cheater! you pressed too early!");
+		}               
+	}
+}
+
+var randMULTIPLIER=0x015a4e35;
+var randINCREMENT=1;
+var today=new Date();
+var randSeed=today.getSeconds();
+function randNumber()
+{
+	randSeed = (randMULTIPLIER * randSeed + randINCREMENT) % (1 << 31);
+	return((randSeed >> 15) & 0x7fff) / 32767;
+}
+
+function startit()
+{
+	if(startPressed)
+	{
+		alert("Already started. Press stop to stop");
+		return;
+	}
+	else
+	{
+		startPressed=true; 
+		timerID=setTimeout('startTest()', 6000*randNumber());
+	}
+}
+
+
+
+
+</script>
+<p>¡Pruebe su tiempo de respuesta!</p>
+Primero haga clic en "Inicio" y espere hasta que cambie el color de fondo. Tan pronto como cambie, presione "¡Parar!"
+
+
+<form name="respuesta">
+Cambiar el color de fondo en:
+<select name="bgColorChange">
+<option selected>Rosa profundo
+<option>Alice azul
+<option>carmesí
+<option>caqui oscuro
+<option>cadete azul
+<option>orquídea oscura
+<option>coral
+<option>chocolate
+<option>medio pizarra azul
+<option>tomate
+<option>gris oscuro
+<option>verde lima
+<option>azul aciano
+<option>verde oliva oscuro 
+</select>
+<input type="button" value="start" onClick="startit()">
+<input type="button" value="stop" onClick="stopTest()">
+</form>
+
+
+
+
+
+<SCRIPT>
+var val=""
+var counter="0"
+themessage=new Array()
+themessage[0]="Cásate por la tarde y así no habrás perdido todo el día."
+themessage[1]="Todo es divertido... siempre y cuando le ocurra a otra persona."
+themessage[2]="Las mejores cosas de la vida te deshacen el pelo."
+themessage[3]="Lo malo no es vivir en las nubes, sino bajar."
+themessage[4]="Odio que hablen cuando interrumpo."
+themessage[5]="Si el mundo es un pañuelo, ¿nosotros qué somos?"
+themessage[6]="Gracias a Dios que soy ateo."
+themessage[7]="Me hago responsable de lo que digo... no de lo que entiendas."
+themessage[8]="Si no puedes convencerlos, confúndelos."
+themessage[9]="Siembra un árbol y harás feliz a un perro."
+themessage[10]="Ríe y el mundo reirá contigo, ronca y dormirás solo."
+themessage[11]="Hay dos palabras que te abrirán muchas puertas: Tire y Empuje."
+themessage[12]="Tu ignorancia es enciclopédica."
+themessage[13]="Solía pensar que era indeciso, pero ahora no estoy seguro."
+themessage[14]="Lo importante no es ganar, es hacer perder al otro."
+themessage[15]="Si buscas una mano que te ayude... ¡Búscala al final de tu brazo!"
+themessage[16]="Tengo que ir al oculista, pero nunca veo el momento."
+themessage[17]="El tiempo sin ti es empo."
+themessage[18]="Lo más cerca que una persona llega a la perfección es el día que rellena una solicitud de empleo."
+themessage[19]="Un día sin sol es, ya sabes, de noche."
+
+x=Math.floor(Math.random()*themessage.length)
+
+function changer(){
+if(counter>=themessage[x].length){return false}
+else{
+val+=themessage[x].charAt(counter)
+document.myform.mytext.value=val
+counter++
+return false
+}
+}
+function resetit(){
+alert("Gracias por tus comentarios.")
+document.myform.mytext.value=""
+counter="0"
+val=""
+x=Math.floor(Math.random()*themessage.length)
+}
+
+</SCRIPT>
+
+<DIV align=left>
+<TABLE height=182 cellSpacing=0 cellPadding=0 width=542 border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width=542 height=182><FONT face=Arial>
+      <FORM name=myform>
+      <P><SMALL>JUEGO DE PALABRA SECRETA</SMALL></FONT></P>
+      <P><FONT face=Arial><TEXTAREA onkeypress="return changer()" name=mytext rows=10 wrap=virtual cols=40></TEXTAREA><BR><BR><INPUT onclick=resetit() type=button value="Pon tu Letra"></FONT></P></FORM></TD></TR></TBODY></TABLE>
+</DIV>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+}
+.style1 {color: #FFFFFF}
+body {
+	background-color: #000000;
+}
+-->
+</style>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) { 
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+</head>
+
+<body>
+<div id="Layer1" style="position:absolute; left:168px; top:155px; width:224px; height:142px; z-index:1"><img src="lig1.jpg" width="225" height="225"></div>
+<div id="Layer2" style="position:absolute; left:688px; top:156px; width:225px; height:155px; z-index:2"><img src="lig2.jpg" width="225" height="225"></div>
+<div id="Layer3" style="position:absolute; left:1306px; top:184px; width:266px; height:164px; z-index:3"><img src="lig3.jpg" width="265" height="190"></div>
+<div id="Layer4" style="position:absolute; left:414px; top:445px; width:226px; height:160px; z-index:4"><img src="lig4.jpg" width="225" height="225"></div>
+<div id="Layer5" style="position:absolute; left:1050px; top:419px; width:258px; height:183px; z-index:5"><img src="lig5.jpg" width="259" height="194"></div>
+</body>
+<div align="center" class="style1">
+<b>
+<script>
+var text="OTRAS LIGAS"
+var speed=80 
+if (document.all||document.getElementById){
+document.write('<span id="highlight">' + text + '</span>')
+var storetext=document.getElementById? document.getElementById("highlight") : document.all.highlight
+}
+else
+document.write(text)
+var hex=new Array("00","14","28","3C","50","64","78","8C","A0","B4","C8","DC","F0")
+var r=1
+var g=1
+var b=1
+var seq=1
+function changetext(){
+rainbow="#"+hex[r]+hex[g]+hex[b]
+storetext.style.color=rainbow
+}
+function change(){
+if (seq==6){
+b--
+if (b==0)
+seq=1
+}
+if (seq==5){
+r++
+if (r==12)
+seq=6
+}
+if (seq==4){
+g--
+if (g==0)
+seq=5
+}
+if (seq==3){
+b++
+if (b==12)
+seq=4
+}
+if (seq==2){
+r--
+if (r==0)
+seq=3
+}
+if (seq==1){
+g++
+if (g==12)
+seq=2
+}
+changetext()
+}
+function starteffect(){
+if (document.all||document.getElementById)
+flash=setInterval("change()",speed)
+}
+starteffect()
+</script>
+</b>
+</div>
+</html>
